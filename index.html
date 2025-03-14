@@ -65,7 +65,7 @@
 
                     <li class="nav__items">
                         <a href="#portfolio" class="nav__link ">
-                            <i class="uil uil-scenery nav__icon"></i> Portfolio
+                            <i class="uil uil-scenery nav__icon"></i> Blogs
                         </a>
                     </li>
 
@@ -734,7 +734,11 @@
                     </a>
                 </div>
             </div>
-            <p class="footer__copy">&copy; 2023 Rabindra Mahato | All Rights Reserved</p>
+          <!-- <p class="footer__copy">&copy; 2023 Rabindra Mahato | All Rights Reserved</p> -->
+          <p class="footer__copy">&copy; <span id="year"></span> Rabindra Mahato | All Rights Reserved</p>
+
+
+
         </div>
     </footer>
 
@@ -763,6 +767,10 @@
             loop: true,
         });
     </script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    
 
     <!--=================== Animate scroll js ===============-->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
