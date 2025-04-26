@@ -19,6 +19,19 @@ if (navClose) {
     });
 }
 
+/*==================== PAGE VIEW COUNTER ====================*/
+/*==================== LOCAL VIEW COUNTER ====================*/
+const viewCounter = document.getElementById('view-count');
+
+if (viewCounter) {
+    let views = localStorage.getItem('rabi-portfolio-views');
+    views = views ? parseInt(views) + 1 : 1;
+    localStorage.setItem('rabi-portfolio-views', views);
+    viewCounter.textContent = views;
+}
+
+
+
 /*==================== REMOVE MENU MOBILE ====================*/
 const navLink = document.querySelectorAll('.nav__link');
 
