@@ -19,16 +19,40 @@ if (navClose) {
     });
 }
 
-/*==================== LOCAL VIEW COUNTER ====================*/
+/*==================== Global VIEW COUNTER ====================*/
 const viewCounter = document.getElementById('view-count');
 
 if (viewCounter) {
-    let views = localStorage.getItem('rabi-portfolio-views');
-    views = views ? parseInt(views) + 1 : 1;
-    localStorage.setItem('rabi-portfolio-views', views);
-    viewCounter.textContent = views;
+    const viewsRef = database.ref('pageViews');
+
+    viewsRef.transaction(current => {
+        return (current || 0) + 1;
+    });
+
+    viewsRef.on('value', snapshot => {
+        viewCounter.textContent = snapshot.val();
+    });
 }
 
+
+
+
+// Your Firebase config (USE THIS)
+const firebaseConfig = {
+    apiKey: "AIzaSyBLMhX11s_ltjUHyghmF5Rh8Bkv7a0_yhE",
+    authDomain: "rabi-portfolio.firebaseapp.com",
+    databaseURL: "https://rabi-portfolio-default-rtdb.firebaseio.com",
+    projectId: "rabi-portfolio",
+    storageBucket: "rabi-portfolio.appspot.com",  // (small typo fixed here)
+    messagingSenderId: "249024862444",
+    appId: "1:249024862444:web:3795c8f3eb7335f7ff2dc9",
+    measurementId: "G-P50TJC3P2G"
+  };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+  
 
 
 /*==================== REMOVE MENU MOBILE ====================*/
