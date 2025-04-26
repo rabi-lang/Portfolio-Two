@@ -18,6 +18,7 @@ if (navClose) {
         navMenu.classList.remove('show-menu');
     });
 }
+/*==================== Global VIEW COUNTER ====================*/
 
 
 // Step 1: Config
@@ -54,7 +55,6 @@ const firebaseConfig = {
 
 
 
-/*==================== Global VIEW COUNTER ====================*/
 
 
 
