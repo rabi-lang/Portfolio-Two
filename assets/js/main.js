@@ -19,7 +19,6 @@ if (navClose) {
     });
 }
 
-/*==================== PAGE VIEW COUNTER ====================*/
 /*==================== LOCAL VIEW COUNTER ====================*/
 const viewCounter = document.getElementById('view-count');
 
