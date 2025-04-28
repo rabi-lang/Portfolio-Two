@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="assets/css/admin-dashboard.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>👋 Welcome, Admin!</h1>
+    <h2>Create New Blog Post</h2>
+
+    <form id="blogForm">
+      <input type="text" id="blogTitle" placeholder="Blog Title" required><br><br>
+      <textarea id="blogDescription" placeholder="Blog Description" required></textarea><br><br>
+      <input type="text" id="blogImage" placeholder="Image URL (optional)"><br><br>
+      <button type="submit">Publish Blog</button>
+    </form>
+
+    <div id="statusMessage"></div>
+
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Initialize Firebase (MUST come first)
+    const firebaseConfig = {
+      apiKey: "AIzaSyBLMhX11s_ltjUHyghmF5Rh8Bkv7a0_yhE",
+      authDomain: "rabi-portfolio.firebaseapp.com",
+      projectId: "rabi-portfolio",
+      storageBucket: "rabi-portfolio.appspot.com",
+      messagingSenderId: "249024862444",
+      appId: "1:249024862444:web:3795c8f3eb7335f7ff2dc9"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Connect Firestore AFTER Firebase initialized
+    const db = firebase.firestore();
+
+    // Auth check (only logged-in users)
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "admin-login.html"; 
+      }
+    });
+
+    // Logout function
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        window.location.href = "admin-login.html";
+      });
+    }
+
+    // Blog form submit
+    const blogForm = document.getElementById('blogForm');
+    blogForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById('blogTitle').value;
+      const description = document.getElementById('blogDescription').value;
+      const image = document.getElementById('blogImage').value;
+
+      db.collection('blogs').add({
+        title: title,
+        description: description,
+        image: image,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(() => {
+        document.getElementById('statusMessage').textContent = "✅ Blog published successfully!";
+        blogForm.reset();
+      }).catch((error) => {
+        console.error("Error adding blog: ", error);
+        document.getElementById('statusMessage').textContent = "❌ Failed to publish blog.";
+      });
+    });
+  </script>
+
+</body>
+</html>

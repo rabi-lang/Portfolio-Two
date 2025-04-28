@@ -166,11 +166,15 @@ img {
 }
 
 /*==================== LAYOUT ====================*/
+
 .container {
-  max-width: 768px;
-  margin-left: var(--mb-1-5);
-  margin-right: var(--mb-1-5);
+  max-width: 968px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
+
 
 .grid {
   display: grid;
@@ -1208,7 +1212,20 @@ footer .footer__social a:hover {
     margin-top: 4.5rem;
   }
 }
+/*----Admin panel login ----*/
+.nav__login {
+  font-size: 1.5rem;
+  color: var(--title-color);
+  margin-left: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: 0.3s;
+}
 
+.nav__login:hover {
+  color: var(--first-color);
+}
 
 
 /* For large devices */
@@ -1318,4 +1335,54 @@ footer .footer__social a:hover {
 .skills__logo:hover{
   transform: translateY(-.25rem);
   transition: 1s;
+}
+/*==================== Blogs card ====================*/
+/* For blogs layout (side-by-side) */
+/* BLOG LIST CONTAINER */
+#blog-list {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+/* BLOG CARD STYLE */
+.blog-card {
+  flex: 0 0 auto; /* important: don't stretch */
+  width: 300px;
+  background-color: var(--container-color);
+  padding: 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  scroll-snap-align: start; /* important for smooth scroll snapping */
+}
+
+.blog-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+}
+
+.blog-card-body {
+  margin-top: 1rem;
+}
+
+.blog-card-title {
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: 0.5rem;
+}
+
+.blog-card-description {
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+}
+
+/* RESPONSIVE: 1 column for tablets and mobiles */
+@media (max-width: 768px) {
+  #blog-list {
+      grid-template-columns: 1fr;
+  }
 }

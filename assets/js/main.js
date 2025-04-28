@@ -53,12 +53,55 @@ const firebaseConfig = {
   
 
 
+/*==================== Fetching Blogs from firebase ====================*/
+    // 1. Connect to Firestore
+const db = firebase.firestore();
 
+// 2. Setup Swiper first
+var swiper = new Swiper(".mySwiperBlog", {
+   
+    slidesPerView: 'auto',
+    spaceBetween: 16,
+    centeredSlides: true,
+    grabCursor: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+  
 
+// 3. Target blog list
+const blogList = document.getElementById('blog-list');
 
-
-
-
+// 4. Fetch blogs and inject
+db.collection('blogs').orderBy('timestamp', 'desc').get()
+  .then((querySnapshot) => {
+    let blogCards = '';  // collect all cards first
+    querySnapshot.forEach((doc) => {
+      const blog = doc.data();
+      blogCards += `
+        <div class="swiper-slide">
+          <div class="blog-card">
+            <img src="${blog.image || '/assets/img/default-blog.jpg'}" alt="Blog Image" class="blog-card-img">
+            <div class="blog-card-body">
+              <h3 class="blog-card-title">${blog.title}</h3>
+              <p class="blog-card-description">${blog.description}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    blogList.innerHTML = blogCards;   // inject at once ✅
+    swiper.update();                  // update swiper after DOM ready ✅
+  })
+  .catch((error) => {
+    console.error("Error fetching blogs: ", error);
+  });
 
 
 /*==================== REMOVE MENU MOBILE ====================*/
@@ -112,20 +155,30 @@ modalCloses.forEach((modalClose) => {
     });
 });
 
-/*==================== PORTFOLIO SWIPER  ====================*/
-let swiperPortfolio = new Swiper('.portfolio__container', {
-    cssMode: true,
-    loop: true,
 
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
+/*==================== PORTFOLIO SWIPER  ====================*/
+document.addEventListener('DOMContentLoaded', function() {
+    const portfolioSwiper = document.querySelector('.portfolio__container.swiper-container .swiper-wrapper');
+    
+    if (portfolioSwiper) {
+        new Swiper('.portfolio__container.swiper-container', {
+            cssMode: true,
+            loop: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    } else {
+        console.warn('Portfolio Swiper not initialized because elements are missing.');
+    }
 });
+
+
 
 /*==================== TESTIMONIAL ====================*/
 let swiperTestimonial = new Swiper('.testimonial__container', {

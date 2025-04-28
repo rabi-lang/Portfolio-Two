@@ -28,6 +28,7 @@
 
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 
 
 <body>
@@ -85,6 +86,10 @@
             <div class="nav__btns">
                 <!--Theme Change button-->
                 <i class="uil uil-moon change-theme" id="theme-button"></i>
+                 <!-- Login Button -->
+                  <a href="admin-login.html" class="nav__login" title="Admin Login">
+                    <i class="uil uil-signin"></i>
+                   </a>
 
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="uil uil-apps"></i>
@@ -326,7 +331,7 @@
             <span class="section__subtitle">By Programming Hub</span>
             <span class="section__subtitle">Scroll or slide here to see next>>></span>
 
-            <div data-aos="fade-up" class="portfolio__container container swiper-container">
+            <div data-aos="fade-up" class="certificate__container container swiper-container">
                 <div class="swiper-wrapper">
                     <!--==================== Certificate 1 ====================-->
                     <div class="portfolio__content grid swiper-slide">
@@ -486,67 +491,19 @@
         <section class="portfolio section" id="portfolio">
             <h2 class="section__title">Portfolio</h2>
             <span class="section__subtitle">Most recent work</span>
-
-            <div data-aos="fade-right" class="portfolio__container container swiper-container">
-                <div class="swiper-wrapper">
-                    <!--==================== PORTFOLIO 1 ====================-->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img src="/assets/img/portfolio1.jpg" alt="" class="portfolio__img">
-
-                        <div class="portfolio__data">
-                            <h3 class="portfolio__title">Modern Website</h3>
-                            <p class="portfolio__description">Website adaptable to all devices, with ui components and
-                                animated interactions.</p>
-                            <a href="#" class="button button--flex button--small portfolio_-button">
-                                Demo
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <!--==================== PORTFOLIO 2 ====================-->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img src="/assets/img/portfolio2.jpg" alt="" class="portfolio__img">
-
-                        <div class="portfolio__data">
-                            <h3 class="portfolio__title">Brand Design</h3>
-                            <p class="portfolio__description">Website adaptable to all devices, with ui components and
-                                animated interactions.</p>
-                            <a href="#" class="button button--flex button--small portfolio_-button">
-                                Demo
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <!--==================== PORTFOLIO 3 ====================-->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img src="/assets/img/portfolio3.jpg" alt="" class="portfolio__img">
-
-                        <div class="portfolio__data">
-                            <h3 class="portfolio__title">Online Store</h3>
-                            <p class="portfolio__description">Website adaptable to all devices, with ui components and
-                                animated interactions.</p>
-                            <a href="#" class="button button--flex button--small portfolio_-button">
-                                Demo
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
-                        </div>
-                    </div>
+          
+            <div class="swiper mySwiperBlog">
+                <div class="swiper-wrapper" id="blog-list">
+                  <!-- Dynamic blog cards inserted here -->
                 </div>
-
-
-                <!-- Add Arrows -->
-                <div class="swiper-button-next">
-                    <i class="uil uil-angle-right-b swiper-portfolio-icon"></i>
-                </div>
-                <div class="swiper-button-prev">
-                    <i class="uil uil-angle-left-b swiper-portfolio-icon"></i>
-                </div>
-
-                <!-- Add Pagination -->
+              
                 <div class="swiper-pagination"></div>
-            </div>
-        </section>
-
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </div>
+              
+          </section>
+          
         <!--==================== PROJECT IN MIND ====================-->
         <section class="project section">
             <div data-aos="fade-in" class="project__bg">
@@ -760,7 +717,15 @@
     <script src="/assets/js/swiper-bundle.min.js"></script>
 
     <!--==================== MAIN JS ====================-->
-    <script src="assets/js/main.js?v=1.5"></script>
+    <script src="assets/js/main.js?v=1.49"></script>
+
+   
+
+
+
+
+
+
 
     <!--=================== Animated text ===============-->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -789,6 +754,9 @@
         });
     </script>
 
+
+
+  
 </body>
 
 </html>
