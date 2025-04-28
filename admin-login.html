@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+  
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Login</title>
+  
+  <!-- Main CSS and Admin Login CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" /> 
   <link rel="stylesheet" href="assets/css/admin-login.css" />
+  
+  <!-- REMIXICON for icons if used -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
+
 <body>
-  <div class="login-container">
+  <!-- ========= HEADER + NAVBAR ========= -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">Rabindra Mahato</a>
+
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list grid">
+          <li class="nav__item"><a href="index.html#home" class="nav__link">Home</a></li>
+          <li class="nav__item"><a href="index.html#about" class="nav__link">About</a></li>
+          <li class="nav__item"><a href="index.html#skills" class="nav__link">Skills</a></li>
+          <li class="nav__item"><a href="index.html#services" class="nav__link">Services</a></li>
+          <li class="nav__item"><a href="index.html#blogs" class="nav__link">Blogs</a></li>
+          <li class="nav__item"><a href="index.html#contact" class="nav__link">Contact</a></li>
+        </ul>
+
+        <i class="uil uil-times nav__close" id="nav-close"></i>
+      </div>
+
+      <div class="nav__btns">
+        <!-- Theme button -->
+        <i class="uil uil-moon change-theme" id="theme-button"></i>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========= LOGIN FORM ========= -->
+  <div class="login-container" style="margin-top: 7rem;"> <!-- added margin-top to avoid overlap -->
     <form class="login-form" id="loginForm">
       <h2>Login</h2>
       <input type="email" id="email" placeholder="Email" required />
@@ -23,37 +57,11 @@
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="assets/js/admin-login.js?v1.1"></script>
 
-  <script>
-    // Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyBLMhX11s_ltjUHyghmF5Rh8Bkv7a0_yhE",
-      authDomain: "rabi-portfolio.firebaseapp.com",
-      projectId: "rabi-portfolio",
-      storageBucket: "rabi-portfolio.appspot.com",
-      messagingSenderId: "249024862444",
-      appId: "1:249024862444:web:3795c8f3eb7335f7ff2dc9"
-    };
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    // Login Handler
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          alert("✅ Login Successful!");
-          window.location.href = "admin-dashboard.html"; // Redirect after login
-        })
-        .catch((error) => {
-          alert("❌ Login Failed: " + error.message);
-        });
-    });
-  </script>
 </body>
 </html>
+
+
+ 
